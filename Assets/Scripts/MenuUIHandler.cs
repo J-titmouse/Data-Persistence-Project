@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 
 
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -14,12 +13,33 @@ using UnityEditor;
 public class MenuUIHandler : MonoBehaviour
 {
     public TMP_InputField playerName;
+    public TMP_Text highname;
+    public TMP_Text highscore;
+    public TMP_Text Placeholder;
+    void Start()
+    {
+        if (DataManager.Instance.playerName != "")
+        {
+            Placeholder.color = Color.black;
+            Placeholder.fontStyle = FontStyles.Bold; 
+            Placeholder.text = DataManager.Instance.playerName;
+        }
+        string tempText = "";
+        for (int i = 0; i < DataManager.Instance.topScoresName.Length; i++)
+        {
+            tempText = tempText + DataManager.Instance.topScoresName[i] + "\n";
+        }
+        highname.text = tempText;
+        tempText = "";
 
+        for (int i = 0; i < DataManager.Instance.topScores.Length; i++)
+        { 
+            tempText = tempText + DataManager.Instance.topScores[i] + "\n";
+        }
+        highscore.text = tempText;
+    }
     public void StartNew()
     {
-        Debug.Log(DataManager.Instance.topScores.Length);
-        Debug.Log(DataManager.Instance.topScoresName.Length);
-        Debug.Log(playerName.text);
         if (playerName.text != "")
         {
             DataManager.Instance.playerName = playerName.text;
