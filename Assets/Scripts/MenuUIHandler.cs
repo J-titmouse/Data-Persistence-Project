@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UIElements;
+
 
 
 
@@ -15,8 +17,11 @@ public class MenuUIHandler : MonoBehaviour
 
     public void StartNew()
     {
-        if (DataManager.Instance.playerName != "")
-        { 
+        Debug.Log(DataManager.Instance.topScores.Length);
+        Debug.Log(DataManager.Instance.topScoresName.Length);
+        Debug.Log(playerName.text);
+        if (playerName.text != "")
+        {
             DataManager.Instance.playerName = playerName.text;
         }
         SceneManager.LoadScene(1);
