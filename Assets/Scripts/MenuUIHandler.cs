@@ -48,6 +48,7 @@ public class MenuUIHandler : MonoBehaviour
     }
     public void Exit()
     {
+        DataManager.Instance.SaveToFile();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
